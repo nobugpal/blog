@@ -1,0 +1,48 @@
+# See https://help.github.com/articles/ignoring-files-for-your-git-repository/
+
+## Jekyll configuration files
+_config.yml
+Gemfile*
+
+# Bundler
+.bundler/
+bundle/
+vendor/
+
+# Ruby gems cache
+.gem/
+
+# Documentation and logs
+docs/
+public/**/README.md
+_logs/
+_output/**
+
+# Development files
+*.md~
+*.swp
+*~
+.DS_Store
+
+# Build directories
+_site/
+public/
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# IDE files
+*.log
+node_modules/
+
+# Backup files
+*.backup
+*.bak
+
+# Temporary files
+tmp/
+temp/
+.cache/

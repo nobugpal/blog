@@ -1,0 +1,26 @@
+---
+permalink: /
+layout: home
+---
+
+<div class="home">
+  <h1 class="page-heading">{{ site.title }}</h1>
+  <p class="lead">{{ site.description }}</p>
+  
+  {% if site.posts.size > 0 %}
+    <ul class="post-list">
+      {% for post in site.posts limit: 10 %}
+        <li>
+          <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span> • 
+          <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    
+    {% if site.posts.size > 10 %}
+      <p><a href="/archive">更多文章 →</a></p>
+    {% endif %}
+  {% else %}
+    <p class="post-placeholder">暂无文章。</p>
+  {% endif %}
+</div>
