@@ -1,136 +1,294 @@
 ---
 layout: minimal
 ---
-
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{{ site.description }}" />
-    <meta name="author" content="{{ site.author.name }}" />
-    
-    <title>{{ page.title | default: site.title }}</title>
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
-    
-    <style type="text/css">
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        line-height: 1.6;
-        color: #24292e;
-        background-color: #fafbfc;
-      }
-      
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-      
-      header, footer {
-        text-align: center;
-        padding: 40px 0;
-        border-bottom: 1px solid #e1e4e8;
-      }
-      
-      .logo {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #24292e;
-        text-decoration: none;
-      }
-      
-      .description {
-        font-size: 1.1rem;
-        color: #586069;
-        margin-top: 10px;
-      }
-      
-      .home {
-        padding: 60px 0;
-      }
-      
-      .page-heading {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-      
-      .lead {
-        font-size: 1.2rem;
-        color: #586069;
-      }
-      
-      .post-list {
-        list-style: none;
-        padding: 0;
-        margin-top: 30px;
-      }
-      
-      .post-list li {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #e1e4e8;
-      }
-      
-      .post-meta {
-        color: #586069;
-        font-size: 0.9rem;
-      }
-      
-      .post-title {
-        color: #24292e;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s ease;
-      }
-      
-      .post-title:hover {
-        color: #0366d6;
-      }
-      
-      .site-footer {
-        background-color: #f6f8fa;
-        border-top: 1px solid #e1e4e8;
-        font-size: 0.9rem;
-        color: #586069;
-      }
-      
-      a {
-        color: #0366d6;
-        text-decoration: none;
-      }
-      
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
   
-  <body>
-    <header class="site-header">
-      <div class="container">
-        <a href="/" class="logo">{{ site.title }}</a>
-        <p class="description">{{ site.description }}</p>
-      </div>
-    </header>
-    
-    <main class="container content">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:         #fafaf8;
+      --surface:    #ffffff;
+      --text:       #1a1a1a;
+      --muted:      #6b6b6b;
+      --accent:     #2c5aa0;
+      --accent-h:   #1e3f7a;
+      --rule:       #d8d8d4;
+      --code-bg:    #f3f3f1;
+      --font-serif: 'EB Garamond', 'Noto Serif SC', Georgia, serif;
+      --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s, color .2s;
+    }
+    a:hover {
+      color: var(--accent-h);
+      border-bottom-color: var(--accent-h);
+    }
+
+    /* ─── Layout ─── */
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.header {
+      padding: 3rem 0 2rem;
+      border-bottom: 1pt solid var(--rule);
+      margin-bottom: 4rem;
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .header-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      color: var(--text);
+      border-bottom: none;
+    }
+    .header-title:hover { border-bottom: none; color: var(--accent); }
+
+    nav.header-nav {
+      display: flex;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+      font-family: var(--font-serif);
+    }
+    nav.header-nav a {
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: .01em;
+    }
+    nav.header-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    main.main { flex: 1; }
+
+    .content-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    footer.footer {
+      border-top: 1pt solid var(--rule);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: var(--font-serif);
+    }
+    footer.footer a { color: var(--muted); }
+    footer.footer a:hover { color: var(--accent); }
+
+    /* ─── Typography ─── */
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text);
+      letter-spacing: -.015em;
+    }
+    h1 { font-size: 2rem;   margin-bottom: 1.25rem; }
+    h2 { font-size: 1.45rem; margin: 2.5rem 0 .9rem; }
+    h3 { font-size: 1.2rem;  margin: 2rem 0 .75rem; }
+
+    p { margin-bottom: 1.25rem; }
+    p.lead { font-size: 1.15rem; color: var(--muted); font-style: italic; margin-bottom: 2.5rem; }
+
+    strong { font-weight: 600; }
+    em { font-style: italic; }
+
+    /* ─── Lists ─── */
+    ul, ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    li { margin-bottom: .35rem; }
+    li:last-child { margin-bottom: 0; }
+
+    /* ─── Blockquote ─── */
+    blockquote {
+      border-left: 2.5pt solid var(--rule);
+      padding: .5rem 0 .5rem 1.5rem;
+      margin: 1.75rem 0;
+      color: var(--muted);
+      font-style: italic;
+    }
+    blockquote p:last-child { margin-bottom: 0; }
+
+    /* ─── Code ─── */
+    code {
+      font-family: var(--font-mono);
+      font-size: .875em;
+      background: var(--code-bg);
+      padding: .15em .4em;
+      border-radius: 3pt;
+      color: var(--text);
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      border-radius: 5pt;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      font-family: var(--font-mono);
+      font-size: .875rem;
+      line-height: 1.65;
+    }
+    pre code { background: none; padding: 0; font-size: inherit; }
+
+    /* ─── Horizontal Rule ─── */
+    hr {
+      border: none;
+      border-top: 1pt solid var(--rule);
+      margin: 2.5rem 0;
+    }
+
+    /* ─── Table ─── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.75rem 0;
+      font-size: .95rem;
+    }
+    th, td {
+      border: 1px solid var(--rule);
+      padding: .55rem .9rem;
+      text-align: left;
+    }
+    th { background: var(--code-bg); font-weight: 600; }
+    tr:nth-child(even) td { background: var(--bg); }
+
+    /* ─── Article List ─── */
+    .article-list { list-style: none; padding: 0; }
+    .article-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1pt solid var(--rule);
+    }
+    .article-item:first-child { border-top: 1pt solid var(--rule); }
+    .article-date {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .article-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .article-title a { color: inherit; }
+    .article-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ─── Post Meta ─── */
+    .post-meta {
+      display: flex;
+      gap: 1.25rem;
+      font-size: .875rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-family: var(--font-mono);
+      border-bottom: 1pt solid var(--rule);
+      padding-bottom: 1.5rem;
+    }
+    .post-meta .categories { color: var(--accent); }
+
+    /* ─── Section Heading ─── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── Page Hero ─── */
+    .page-hero { margin-bottom: 3rem; }
+    .page-hero h1 { font-size: 2.4rem; margin-bottom: .5rem; }
+
+    /* ─── Archive ─── */
+    .archive-group { margin-bottom: 2.5rem; }
+    .archive-year {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: .75rem;
+      border-bottom: 1pt solid var(--rule);
+      padding-bottom: .4rem;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .header-inner { flex-direction: column; gap: .75rem; }
+      .article-item { flex-direction: column; gap: .25rem; }
+      h1 { font-size: 1.65rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-title">{{ site.title }}</a>
+      <nav class="header-nav">
+        <a href="/">Index</a>
+        <a href="/archive">Archive</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="content-wrap">
       {{ content }}
-    </main>
-    
-    <footer class="site-footer">
-      <div class="container">
-        <p>© {{ site.time | date: '%Y' }} {{ site.author.name }}. Powered by Jekyll.</p>
-      </div>
-    </footer>
-  </body>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> {{ site.author.name }} · Built with Jekyll · Typeset in EB Garamond</p>
+  </footer>
+</div>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
 </html>

@@ -1,0 +1,24 @@
+---
+layout: minimal
+title: Archive
+permalink: /archive/
+---
+<div class="page-hero">
+  <h1>Archive</h1>
+  <p class="lead">{{ site.posts | size }} articles total</p>
+</div>
+
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in posts_by_year %}
+<div class="archive-group">
+  <div class="archive-year">{{ year.name }}</div>
+  <ul class="article-list">
+    {% for post in year.items %}
+    <li class="article-item">
+      <span class="article-date">{{ post.date | date: "%m-%d" }}</span>
+      <span class="article-title"><a href="{{ post.url }}">{{ post.title }}</a></span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}
