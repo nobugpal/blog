@@ -1,20 +1,5 @@
 ---
 layout: home
-permalink: /
+title: nobugpal
+subtitle: Thinking in Public
 ---
-<p class="lead">Research · Technology · Ideas</p>
-
-<p class="section-label">Recent Writing</p>
-
-<ul class="article-list">
-  {% for post in site.posts limit: 10 %}
-  <li class="article-item">
-    <span class="article-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-    <span class="article-title"><a href="{{ post.url }}">{{ post.title }}</a></span>
-  </li>
-  {% endfor %}
-</ul>
-
-{% if site.posts.size > 10 %}
-<p style="margin-top:1.5rem;"><a href="/archive">All articles →</a></p>
-{% endif %}

@@ -1,24 +1,12 @@
 ---
-layout: minimal
+layout: page
 title: Archive
 permalink: /archive/
 ---
-<div class="page-hero">
-  <h1>Archive</h1>
-  <p class="lead">{{ site.posts | size }} articles total</p>
-</div>
+<div class="section-heading">All Posts</div>
 
-{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
-{% for year in posts_by_year %}
-<div class="archive-group">
-  <div class="archive-year">{{ year.name }}</div>
-  <ul class="article-list">
-    {% for post in year.items %}
-    <li class="article-item">
-      <span class="article-date">{{ post.date | date: "%m-%d" }}</span>
-      <span class="article-title"><a href="{{ post.url }}">{{ post.title }}</a></span>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+{% for post in site.posts %}
+  * {{ post.date | date: "%Y-%m-%d" }} &nbsp;&nbsp; [{{ post.title }}]({{ post.url }})
 {% endfor %}
+
+<p>{{ site.posts | size }} posts total.</p>
