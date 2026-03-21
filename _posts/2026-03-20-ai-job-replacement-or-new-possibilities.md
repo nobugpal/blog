@@ -4,6 +4,8 @@ title: "AI 是抢走了我们的工作，还是给了我们新的可能？"
 date: 2026-03-20
 categories: [AI, 思考]
 tags: [AI, 职业, 生产力和工具, 未来趋势, 人机协作]
+ext-js:
+  - "//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
 ---
 
 这几年，AI 的发展速度已经超出了大多数人的预期。从 ChatGPT 到 Sora，从 AI 绘图到自动化编程，AI 渗透进各行各业的步伐越来越快。

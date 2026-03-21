@@ -3,6 +3,8 @@ layout: post
 title: "Welcome to My Blog"
 date: 2024-03-10
 categories: [Meta]
+ext-js:
+  - "//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
 ---
 
 This is the beginning. A space for ideas that deserve more than a passing thought.

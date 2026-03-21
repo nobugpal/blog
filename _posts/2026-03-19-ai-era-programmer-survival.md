@@ -4,6 +4,8 @@ title: "AI时代，程序员先开启大逃杀"
 date: 2026-03-19
 categories: [AI]
 tags: [AI编程, 程序员, 生产力工具, Copilot, Cursor]
+ext-js:
+  - "//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
 ---
 
 
