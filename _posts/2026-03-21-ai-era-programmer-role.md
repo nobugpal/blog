@@ -4,6 +4,8 @@ title: "AI 时代程序员角色的重新定义"
 date: 2026-03-21
 categories: [技术思考]
 tags: [AI, 编程, 需求理解, 未来趋势]
+ext-js:
+  - "//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
 ---
 
 最近很多人都在讨论 AI 会不会取代程序员。说实话，这确实是个值得深思的问题。但仔细想想，我们可能对「编码」和「编程」这两个词的理解有些偏差。AI 时代，编码的重要性并没有降低，只是我们的角色正在发生变化。
@@ -113,5 +115,20 @@ timeline
 这或许就是 AI 时代程序员的新定位：不再只是代码的生产者，而是问题的解决者，是价值的创造者。编码依然重要，但更重要的是知道什么时候需要编码，以及为什么需要编码。
 
 ---
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      er: {
+        useMaxWidth: true
+      }
+    });
+  }
+});
+</script>
 
 **完稿时间**：2026-03-21
